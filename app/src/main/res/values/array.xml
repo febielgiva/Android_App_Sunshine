@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="pref_temperature_array_titles">
+        <item>@string/pref_temperature_farenheit</item>
+        <item>@string/pref_temperature_celsius</item>
+    </string-array>
+
+    <string-array name="pref_temperature_array_values">
+        <item>@string/pref_temperature_farenheit</item>
+        <item>@string/pref_temperature_celsius</item>
+    </string-array>
+</resources>

@@ -2,10 +2,17 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <EditTextPreference
-        android:defaultValue="@string/pref_default_location"
+        android:defaultValue="@string/pref_location_default"
         android:inputType="text"
-        android:key="@string/pref_key_location"
+        android:key="@string/pref_location_key"
         android:singleLine="true"
-        android:title="@string/pref_label_location" />
+        android:title="@string/pref_location_label" />
+
+    <ListPreference
+        android:key="@string/pref_temperature_key"
+        android:title="@string/pref_temperature_label"
+        android:defaultValue="@string/pref_temperature_default"
+        android:entries="@array/pref_temperature_array_titles"
+        android:entryValues="@array/pref_temperature_array_values"/>
 
 </PreferenceScreen>

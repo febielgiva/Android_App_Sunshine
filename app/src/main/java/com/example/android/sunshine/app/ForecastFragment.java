@@ -90,15 +90,11 @@ public class ForecastFragment extends Fragment {
     private void updateWeather() {
         FetchWeatherTask weatherTask = new FetchWeatherTask();
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        String keyName =getString(R.string.pref_key_location);
-        String keyValue = getString(R.string.pref_default_location);
-        String pinCode = preferences.getString(keyName,keyValue);
-        if (pinCode != null){
-            weatherTask.execute(pinCode);
-        }
-        else{
-            weatherTask.execute("94043");
-        }
+        String keyValue =getString(R.string.pref_location_key);
+        String defaultValueIfKeyValueISNull = getString(R.string.pref_location_default);
+
+        String pinCode = preferences.getString(keyValue,defaultValueIfKeyValueISNull);
+        weatherTask.execute(pinCode);
     }
 
     @Override
@@ -173,6 +169,21 @@ public class ForecastFragment extends Fragment {
          */
         private String formatHighLows(double high, double low) {
             // For presentation, assume the user doesn't care about tenths of a degree.
+
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+            String keyValue = getString(R.string.pref_temperature_key);
+            String defaultValue = (getString(R.string.pref_temperature_default));
+            String unitType = preferences.getString(keyValue, defaultValue);
+
+            //Farenheit
+            if(unitType.equalsIgnoreCase((getString(R.string.pref_temperature_farenheit)))){
+                high = (high * 1.8 ) +32 ;
+                low = (low * 1.8 ) +32;
+            }
+            else if(!(unitType.equalsIgnoreCase(getString(R.string.pref_temperature_celsius)))){
+                Log.d(LOG_TAG,"unit not found"+unitType);
+            }
+
             long roundedHigh = Math.round(high);
             long roundedLow = Math.round(low);
 
